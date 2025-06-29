@@ -20,7 +20,10 @@
       color: #222;
       overflow-x: hidden;
       text-align: center;
+      line-height: 1.6;
     }
+    
+    /* Optimized Preloader */
     #preloader {
       position: fixed;
       width: 100%;
@@ -31,42 +34,43 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #preloader.fade-out {
       opacity: 0;
+      visibility: hidden;
     }
     #preloader-logo {
       width: 180px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInDown 1s cubic-bezier(0.215, 0.610, 0.355, 1) forwards 0.3s;
+      transform: translateY(15px);
+      animation: fadeInDown 0.8s ease-out forwards 0.2s;
     }
     .preloader-text {
       font-size: 18px;
       color: #e67e22;
-      margin-top: 20px;
+      margin-top: 15px;
       opacity: 0;
-      animation: fadeIn 1s ease forwards 0.8s;
+      animation: fadeIn 0.8s ease forwards 0.6s;
     }
     #preloader-spinner {
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgba(243, 156, 18, 0.1);
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(243, 156, 18, 0.1);
       border-top-color: #e67e22;
       border-radius: 50%;
-      animation: spin 1.2s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+      animation: spin 1s linear infinite;
       position: relative;
     }
     #preloader-spinner::after {
       content: '';
       position: absolute;
-      top: -8px;
-      left: -8px;
-      right: -8px;
-      bottom: -8px;
-      border: 5px solid rgba(243, 156, 18, 0.05);
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border: 4px solid rgba(243, 156, 18, 0.05);
       border-radius: 50%;
     }
     @keyframes spin {
@@ -81,6 +85,7 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
+
     header {
       background: linear-gradient(to right, #ffecd2, #fcb69f);
       color: #333;
@@ -114,6 +119,7 @@
       margin-bottom: 8px;
       text-shadow: 0 2px 4px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
+      line-height: 1.3;
     }
     header:hover h1 {
       transform: translateY(-2px);
@@ -122,6 +128,7 @@
       font-size: 18px;
       margin-bottom: 20px;
       transition: all 0.3s ease;
+      line-height: 1.5;
     }
     header:hover p {
       transform: translateY(-2px);
@@ -199,6 +206,7 @@
       position: relative;
       display: inline-block;
       padding-bottom: 8px;
+      line-height: 1.4;
     }
     h2::after {
       content: '';
@@ -238,7 +246,7 @@
       transform: rotate(15deg) scale(1.2);
     }
     
-    /* Simplified Catalogue Section */
+    /* Improved Catalogue Section */
     .catalogue-buttons {
       display: flex;
       justify-content: center;
@@ -280,6 +288,7 @@
       font-weight: 600;
       color: #555;
       font-size: 18px;
+      line-height: 1.5;
     }
     .form-group input {
       padding: 14px 20px;
@@ -430,6 +439,7 @@
       font-size: 20px;
       position: relative;
       padding-bottom: 10px;
+      line-height: 1.4;
     }
     .footer-column h3::after {
       content: '';
@@ -456,9 +466,11 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 15px;
+      line-height: 1.5;
     }
     .footer-column .contact-method i {
       color: #ff9966;
+      flex-shrink: 0;
     }
     .business-hours {
       margin-top: 15px;
@@ -467,9 +479,21 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 8px;
+      line-height: 1.5;
     }
-    .business-hours .day.sunday {
+    .business-hours .day.closed {
       color: #ff6b6b;
+      position: relative;
+    }
+    .business-hours .day.closed::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: #ff6b6b;
+      opacity: 0.7;
     }
     footer iframe {
       width: 100%;
@@ -496,6 +520,7 @@
     .copyright p {
       color: #aaa;
       font-size: 14px;
+      line-height: 1.5;
     }
     .social-links-footer {
       display: flex;
@@ -540,6 +565,7 @@
     a:hover::after {
       width: 100%;
     }
+    
     /* Back to top button */
     .back-to-top {
       position: fixed;
@@ -591,6 +617,19 @@
       .catalogue-btn {
         width: 100%;
         justify-content: center;
+      }
+      
+      header h1 {
+        font-size: 28px;
+      }
+      
+      header p {
+        font-size: 16px;
+      }
+      
+      nav a {
+        padding: 10px 20px;
+        font-size: 14px;
       }
     }
   </style>
@@ -725,8 +764,10 @@
       <div class="footer-column">
         <h3>Business Hours</h3>
         <div class="business-hours">
-          <div class="day"><span>Monday - Saturday:</span> <span>8:00 AM - 8:00 PM</span></div>
-          <div class="day sunday"><span>Sunday:</span> <span>Closed</span></div>
+          <div class="day"><span>Morning:</span> <span>9:00 AM - 1:00 PM</span></div>
+          <div class="day closed"><span>Lunch Break:</span> <span>1:00 PM - 3:00 PM</span></div>
+          <div class="day"><span>Evening:</span> <span>3:00 PM - 7:00 PM</span></div>
+          <div class="day closed"><span>Sunday:</span> <span>Closed</span></div>
         </div>
         <p style="margin-top: 15px;"><strong>GSTIN:</strong> 18ABMPA8804D1ZU</p>
       </div>
@@ -749,16 +790,17 @@
   <div class="back-to-top" id="backToTop">↑</div>
 
   <script>
-    // Enhanced loading screen with better transitions
+    // Optimized loading screen with faster transition
     window.addEventListener('load', function() {
       const preloader = document.getElementById('preloader');
+      // Start fade out after 1 second (reduced from 1.5s)
       setTimeout(function() {
         preloader.classList.add('fade-out');
+        // Remove from DOM after animation completes
         setTimeout(function() {
-          preloader.style.display = 'none';
-          document.body.style.overflow = 'auto';
-        }, 800);
-      }, 1500); // Minimum display time
+          preloader.remove();
+        }, 500);
+      }, 1000);
     });
 
     function openWhatsApp() {
@@ -771,24 +813,23 @@
       window.open(`https://wa.me/91${number}?text=${msg}`, '_blank');
     }
 
-    // Enhanced scroll animations with intersection observer
-    const sections = document.querySelectorAll('section');
-    
+    // Optimized scroll animations with intersection observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          // Add staggered delay for each section
-          const index = Array.from(sections).indexOf(entry.target);
-          entry.target.style.transitionDelay = `${index * 0.1}s`;
+          // Remove observer after animation triggers
+          observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    });
+    }, observerOptions);
 
-    sections.forEach(section => {
+    document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
 
@@ -806,14 +847,22 @@
       });
     });
 
-    // Back to top button
+    // Back to top button with throttle
     const backToTopButton = document.getElementById('backToTop');
+    let isScrolling;
+    
     window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('visible');
-      } else {
-        backToTopButton.classList.remove('visible');
-      }
+      // Clear our timeout throughout the scroll
+      window.clearTimeout(isScrolling);
+      
+      // Set a timeout to run after scrolling ends
+      isScrolling = setTimeout(function() {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      }, 100);
     });
     
     backToTopButton.addEventListener('click', function() {
@@ -823,11 +872,12 @@
       });
     });
 
-    // Smooth scroll polyfill for older browsers
+    // Load smooth scroll polyfill only if needed (async)
     if (!('scrollBehavior' in document.documentElement.style)) {
-      const smoothScrollPolyfill = document.createElement('script');
-      smoothScrollPolyfill.src = 'https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js';
-      document.head.appendChild(smoothScrollPolyfill);
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js';
+      script.async = true;
+      document.head.appendChild(script);
     }
   </script>
 </body>
