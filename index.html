@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agarwal Provision Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,12 +15,13 @@
       scroll-behavior: smooth;
     }
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom right, #fdfcfb, #e2d1c3);
-      color: #222;
+      color: #333;
       overflow-x: hidden;
       text-align: center;
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 17px;
     }
     
     /* Optimized Preloader */
@@ -115,11 +116,13 @@
       filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
     }
     header h1 {
+      font-family: 'Montserrat', sans-serif;
       font-size: 36px;
       margin-bottom: 8px;
       text-shadow: 0 2px 4px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
       line-height: 1.3;
+      font-weight: 700;
     }
     header:hover h1 {
       transform: translateY(-2px);
@@ -145,13 +148,14 @@
       color: #d35400;
       padding: 12px 25px;
       border-radius: 30px;
-      font-weight: bold;
+      font-weight: 600;
       text-decoration: none;
       transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       border: 1px solid rgba(255,255,255,0.3);
       position: relative;
       overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
     }
     nav a::before {
       content: '';
@@ -186,7 +190,7 @@
       transform: translateY(0);
     }
     .about, .distributors, .contact, .catalogue {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       margin: 30px auto;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -202,11 +206,13 @@
     h2 {
       color: #e67e22;
       margin-bottom: 25px;
-      font-size: 28px;
+      font-size: 32px;
       position: relative;
       display: inline-block;
       padding-bottom: 8px;
       line-height: 1.4;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
     }
     h2::after {
       content: '';
@@ -221,6 +227,11 @@
     }
     h2:hover::after {
       width: 100%;
+    }
+    p {
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 17px;
     }
     ul {
       list-style: none;
@@ -269,6 +280,7 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 4px 15px rgba(255, 94, 98, 0.3);
+      font-family: 'Montserrat', sans-serif;
     }
     
     .catalogue-btn:hover {
@@ -289,6 +301,7 @@
       color: #555;
       font-size: 18px;
       line-height: 1.5;
+      font-family: 'Montserrat', sans-serif;
     }
     .form-group input {
       padding: 14px 20px;
@@ -300,6 +313,7 @@
       font-size: 16px;
       transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       background: rgba(255,255,255,0.8);
+      font-family: 'Poppins', sans-serif;
     }
     .form-group input:focus {
       outline: none;
@@ -321,6 +335,7 @@
       box-shadow: 0 6px 15px rgba(255, 94, 98, 0.3);
       position: relative;
       overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
     }
     .form-group button::after {
       content: '';
@@ -340,6 +355,24 @@
     }
     .form-group button:hover::after {
       transform: translateX(100%);
+    }
+    
+    /* Success message animation */
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transform: translateX(200%);
+      transition: transform 0.4s ease;
+    }
+    .success-message.show {
+      transform: translateX(0);
     }
     
     .contact-info {
@@ -373,6 +406,7 @@
       border: 1px solid rgba(0,0,0,0.05);
       position: relative;
       overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
     }
     .social-links a::before {
       content: '';
@@ -440,6 +474,7 @@
       position: relative;
       padding-bottom: 10px;
       line-height: 1.4;
+      font-family: 'Montserrat', sans-serif;
     }
     .footer-column h3::after {
       content: '';
@@ -456,6 +491,7 @@
       color: #ddd;
       transition: all 0.3s ease;
       display: block;
+      font-family: 'Poppins', sans-serif;
     }
     .footer-column a:hover {
       color: #ff9966;
@@ -596,7 +632,88 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 
+    /* Brand Categories */
+    .brand-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .brand-category {
+      background: rgba(255,255,255,0.8);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+    }
+    
+    .brand-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .category-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .category-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      border-radius: 3px;
+    }
+    
+    .brand-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .brand-list li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+      transition: all 0.3s ease;
+      padding-left: 25px;
+      position: relative;
+    }
+    
+    .brand-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .brand-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #e67e22;
+      transition: all 0.3s ease;
+    }
+    
+    .brand-list li:hover {
+      transform: translateX(5px);
+      color: #e67e22;
+    }
+    
+    .brand-list li:hover::before {
+      transform: translateX(5px);
+      color: #ff5e62;
+    }
+
     @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+      
       .footer-content {
         grid-template-columns: 1fr;
       }
@@ -630,6 +747,10 @@
       nav a {
         padding: 10px 20px;
         font-size: 14px;
+      }
+      
+      .brand-categories {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -669,25 +790,44 @@
 
   <section class="distributors" id="distributors">
     <h2>🏷️ Brands We Distribute</h2>
-    <ul>
-      <li>Marico Limited</li>
-      <li>Darshan International</li>
-      <li>Jyothy Lab Limited</li>
-      <li>Anchor Consumer Products Pvt. Ltd.</li>
-      <li>Weikfield Foods Pvt. Ltd.</li>
-      <li>Nippo Battery Company Ltd.</li>
-      <li>Mahan Foods</li>
-      <li>Nirma Ltd.</li>
-      <li>Standard Colour Match</li>
-      <li>Rasna Pvt Ltd.</li>
-      <li>Veeba Foods Pvt. Ltd.</li>
-      <li>Britannia Dairy Pvt. Ltd.</li>
-      <li>Kemecos India Pvt. Ltd.</li>
-      <li>Dabur India Ltd.</li>
-      <li>Pusp Hena Pvt. Ltd.</li>
-      <li>Patanjali Foods Ltd. (Mahakosh)</li>
-      <li>Madhur Refined Palm Oil</li>
-    </ul>
+    <p>We partner with leading brands across multiple categories to bring you the best products in the market.</p>
+    
+    <div class="brand-categories">
+      <div class="brand-category">
+        <h3 class="category-title">Personal Care</h3>
+        <ul class="brand-list">
+          <li>Marico Limited</li>
+          <li>Jyothy Lab Limited</li>
+          <li>Anchor Consumer Products Pvt. Ltd.</li>
+          <li>Nirma Ltd.</li>
+          <li>Dabur India Ltd.</li>
+          <li>Pusp Hena Pvt. Ltd.</li>
+        </ul>
+      </div>
+      
+      <div class="brand-category">
+        <h3 class="category-title">Food & Beverages</h3>
+        <ul class="brand-list">
+          <li>Weikfield Foods Pvt. Ltd.</li>
+          <li>Rasna Pvt Ltd.</li>
+          <li>Veeba Foods Pvt. Ltd.</li>
+          <li>Britannia Dairy Pvt. Ltd.</li>
+          <li>Mahan Foods</li>
+          <li>Madhur Refined Palm Oil</li>
+        </ul>
+      </div>
+      
+      <div class="brand-category">
+        <h3 class="category-title">Household & Others</h3>
+        <ul class="brand-list">
+          <li>Darshan International</li>
+          <li>Nippo Battery Company Ltd.</li>
+          <li>Standard Colour Match</li>
+          <li>Kemecos India Pvt. Ltd.</li>
+          <li>Patanjali Foods Ltd. (Mahakosh)</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section class="catalogue" id="catalogue">
@@ -707,9 +847,9 @@
   <section class="contact" id="contact">
     <h2>📞 Contact Us</h2>
     <div class="form-group">
-      <label for="userNumber">Enter Your Phone Number:</label>
+      <label for="userNumber">Enter Your Phone Number to Chat on WhatsApp:</label>
       <input type="text" id="userNumber" placeholder="e.g. 9876543210">
-      <button onclick="openWhatsApp()">Submit</button>
+      <button onclick="openWhatsApp()">Chat on WhatsApp</button>
     </div>
     
     <div class="contact-info">
@@ -788,6 +928,8 @@
   </footer>
 
   <div class="back-to-top" id="backToTop">↑</div>
+  
+  <div class="success-message" id="successMessage">Message sent successfully!</div>
 
   <script>
     // Optimized loading screen with faster transition
@@ -809,6 +951,16 @@
         alert('Please enter a valid 10-digit phone number.');
         return;
       }
+      
+      // Show success message
+      const successMessage = document.getElementById('successMessage');
+      successMessage.classList.add('show');
+      
+      // Hide after 3 seconds
+      setTimeout(() => {
+        successMessage.classList.remove('show');
+      }, 3000);
+      
       const msg = encodeURIComponent(`Hey, you can contact Amit Agarwal at +91 9435037571 or +91 9435925571, and also you can email us at aps_tsk@redifmail.com. Additionally, you can visit our store at Agarwal Provision Store, Siding Back Road, Tinsukia, Assam, 786125. Also follow us on Instagram @agarwalprovisionstore.aps and Facebook, and explore our website at www.agarwalprovisionstore.in and our Linktree at https://linktr.ee/agarwalprovisionstore.`);
       window.open(`https://wa.me/91${number}?text=${msg}`, '_blank');
     }
@@ -879,6 +1031,13 @@
       script.async = true;
       document.head.appendChild(script);
     }
+    
+    // Add scroll animation to brand categories
+    const brandCategories = document.querySelectorAll('.brand-category');
+    brandCategories.forEach((category, index) => {
+      category.style.transitionDelay = `${index * 0.1}s`;
+      observer.observe(category);
+    });
   </script>
 </body>
 </html>
