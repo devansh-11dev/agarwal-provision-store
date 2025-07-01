@@ -14,10 +14,14 @@
     }
     html {
       scroll-behavior: smooth;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.3s ease;
     }
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+      background-attachment: fixed;
       color: #333;
       overflow-x: hidden;
       line-height: 1.7;
@@ -29,13 +33,17 @@
       position: fixed;
       width: 100%;
       height: 100vh;
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      background: #ffffff;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
       transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .preloader-content {
+      text-align: center;
+      max-width: 300px;
+      width: 90%;
     }
     #preloader.fade-out {
       opacity: 0;
@@ -48,6 +56,20 @@
       transform: scale(0.8);
       animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.2s;
     }
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(230, 126, 34, 0.2);
+      border-radius: 2px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      transition: width 0.3s ease;
+    }
     .preloader-text {
       font-size: 18px;
       color: #e67e22;
@@ -56,19 +78,6 @@
       animation: fadeIn 0.8s ease forwards 0.6s;
       font-weight: 500;
       letter-spacing: 1px;
-    }
-    #preloader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(230, 126, 34, 0.1);
-      border-top-color: #e67e22;
-      border-right-color: #e67e22;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      position: relative;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
     @keyframes scaleIn {
       to {
@@ -84,7 +93,7 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Enhanced Header */
+    /* Fixed Header Section */
     header {
       background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
       color: white;
@@ -97,13 +106,12 @@
     header::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-      pointer-events: none;
-      animation: float 8s ease-in-out infinite;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,126,95,0.8) 0%, rgba(254,180,123,0.9) 100%);
+      z-index: 0;
     }
     header::after {
       content: '';
@@ -116,121 +124,48 @@
     }
     header img {
       width: 180px;
-      margin-bottom: 15px;
+      margin: 0 auto 15px;
+      display: block;
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
       position: relative;
       z-index: 1;
       animation: float 4s ease-in-out infinite;
     }
-header h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  line-height: 1.2;
-  font-weight: 700;
-  position: relative;
-  z-index: 1;
-  
-  /* Solid color fallback */
-  color: #fff;
-  
-  /* Gradient text implementation */
-  background: linear-gradient(to right, #fff, #f8f9fa);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  color: transparent;
-  
-  /* Animation */
-  animation: text-gradient-animation 8s ease infinite alternate;
-}
-
-/* Animation for gradient text */
-@keyframes text-gradient-animation {
-  0% {
-    background: linear-gradient(90deg, #fff, #f8f9fa);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-  50% {
-    background: linear-gradient(90deg, #f8f9fa, #e9ecef);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-  100% {
-    background: linear-gradient(90deg, #e9ecef, #fff);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  header h1 {
-    font-size: 2.4rem;
-  }
-}
-
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-    /* Simplify gradient for mobile performance */
-    background: linear-gradient(to right, #fff, #f8f9fa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: none;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-}
-
-/* Fallback for browsers without support */
-@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  header h1 {
-    background: none;
-    -webkit-text-fill-color: initial;
-    color: #fff;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-}
-
-@media (max-width: 992px) {
-  header h1 {
-    font-size: 2.4rem;
-  }
-}
-
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-}
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      margin: 0 auto 10px;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      line-height: 1.2;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(to right, #fff, #f8f9fa);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+      color: transparent;
+      display: block;
+      width: 100%;
+    }
+    @keyframes text-gradient-animation {
+      0% { background: linear-gradient(90deg, #fff, #f8f9fa); }
+      50% { background: linear-gradient(90deg, #f8f9fa, #e9ecef); }
+      100% { background: linear-gradient(90deg, #e9ecef, #fff); }
+    }
     header p {
       font-size: 1.2rem;
-      margin-bottom: 25px;
-      transition: all 0.3s ease;
+      margin: 0 auto 25px;
+      text-align: center;
       line-height: 1.5;
       position: relative;
       z-index: 1;
       color: rgba(255,255,255,0.9);
       max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
     }
     nav {
       display: flex;
@@ -285,7 +220,10 @@ header h1 {
       text-align: left;
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+      backface-visibility: hidden;
     }
     section.visible {
       opacity: 1;
@@ -299,7 +237,8 @@ header h1 {
       padding: 50px;
       border: 1px solid rgba(221, 221, 221, 0.2);
       backdrop-filter: blur(8px);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateZ(0);
     }
     .about:hover, .distributors:hover, .contact:hover, .catalogue:hover {
       transform: translateY(-8px);
@@ -355,6 +294,7 @@ header h1 {
       border: 1px solid rgba(221, 221, 221, 0.3);
       opacity: 0;
       transform: translateY(20px);
+      will-change: transform, opacity;
     }
     .brand-category.visible {
       opacity: 1;
@@ -729,12 +669,11 @@ header h1 {
       transition: all 0.5s ease;
       position: relative;
       z-index: 1;
-      opacity: 0.9;
+      opacity: 1;
     }
     footer iframe:hover {
       transform: scale(1.02);
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-      opacity: 1;
     }
     .copyright {
       margin-top: 60px;
@@ -895,11 +834,15 @@ header h1 {
         font-size: 1.8rem;
       }
       nav {
+        flex-direction: column;
         gap: 8px;
+        align-items: center;
       }
       nav a {
         padding: 10px 16px;
         font-size: 0.85rem;
+        width: 100%;
+        text-align: center;
       }
       .about, .distributors, .contact, .catalogue {
         padding: 25px;
@@ -917,15 +860,37 @@ header h1 {
         padding: 12px 20px;
         font-size: 0.9rem;
       }
+      .footer-column {
+        text-align: center;
+      }
+      .footer-column h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .business-hours .day {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+      }
+      .success-message {
+        top: 20px;
+        right: 20px;
+        left: 20px;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Modern Preloader -->
   <div id="preloader">
-    <img src="Black_Minimalist_Fashion_Brand_Logo-removebg-preview.png" alt="Loading" id="preloader-logo">
-    <div id="preloader-spinner"></div>
-    <div class="preloader-text">PREMIUM FMCG DISTRIBUTORS</div>
+    <div class="preloader-content">
+      <img src="Black_Minimalist_Fashion_Brand_Logo-removebg-preview.png" alt="Loading" id="preloader-logo">
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="preloader-text">PREMIUM FMCG DISTRIBUTORS</div>
+    </div>
   </div>
 
   <!-- Enhanced Header -->
@@ -951,9 +916,8 @@ header h1 {
       Our extensive network and efficient supply chain ensure timely deliveries and consistent product availability. We specialize in household essentials, personal care products, and food & beverage items, catering to the diverse needs of our clients.
     </p>
     <p>
-      <strong>Key Personnel:</strong><br>
-      <i class="fas fa-user-tie"></i> Mr. Nagar Mal Agarwal (Founder)<br>
-      <i class="fas fa-user"></i> Mr. Amit Agarwal (Managing Partner)<br>
+      <i class="fas fa-user-tie"></i> Nagar Mal Agarwal<br>
+      <i class="fas fa-user"></i> Amit Agarwal<br>
       <i class="fas fa-id-card"></i> <strong>GSTIN:</strong> 18ABMPA8804D1ZU
     </p>
   </section>
@@ -967,23 +931,23 @@ header h1 {
       <div class="brand-category">
         <h3 class="category-title"><i class="fas fa-spa"></i> Personal Care</h3>
         <ul class="brand-list">
-          <li>Marico Limited (Parachute, Saffola)</li>
-          <li>Jyothy Lab Limited (Ujala, Exo)</li>
-          <li>Anchor Consumer Products (Toothpaste)</li>
-          <li>Nirma Ltd. (Detergents, Soaps)</li>
-          <li>Dabur India Ltd. (Hair Care, Oral Care)</li>
-          <li>Pusp Hena Pvt. Ltd. (Hair Color)</li>
+          <li>Marico Limited</li>
+          <li>Jyothy Lab Limited</li>
+          <li>Anchor Consumer Products</li>
+          <li>Nirma Ltd.</li>
+          <li>Dabur India Ltd.</li>
+          <li>Pusp Hena Pvt. Ltd.</li>
         </ul>
       </div>
       
       <div class="brand-category">
         <h3 class="category-title"><i class="fas fa-utensils"></i> Food & Beverages</h3>
         <ul class="brand-list">
-          <li>Weikfield Foods (Instant Mixes)</li>
-          <li>Rasna Pvt Ltd. (Beverage Concentrates)</li>
-          <li>Veeba Foods (Sauces, Dressings)</li>
-          <li>Britannia Dairy (Cheese, Dairy)</li>
-          <li>Mahan Foods (Edible Oils)</li>
+          <li>Weikfield Foods</li>
+          <li>Rasna Pvt Ltd.</li>
+          <li>Veeba Foods</li>
+          <li>Britannia Dairy</li>
+          <li>Mahan Foods</li>
           <li>Madhur Refined Palm Oil</li>
         </ul>
       </div>
@@ -991,11 +955,11 @@ header h1 {
       <div class="brand-category">
         <h3 class="category-title"><i class="fas fa-home"></i> Household & Others</h3>
         <ul class="brand-list">
-          <li>Darshan International (Home Care)</li>
+          <li>Darshan International</li>
           <li>Nippo Battery Company Ltd.</li>
-          <li>Standard Colour Match (Paints)</li>
+          <li>Standard Colour Match</li>
           <li>Kemecos India Pvt. Ltd.</li>
-          <li>Patanjali Foods (Mahakosh Oil)</li>
+          <li>Patanjali Foods</li>
         </ul>
       </div>
     </div>
@@ -1088,7 +1052,13 @@ header h1 {
       </div>
     </div>
     
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3568.127811036976!2d95.3597873150439!3d27.48918398311549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3740c3b8aace969d%3A0x1f9e6a1b9a0e3b0e!2sAgarwal%20Provision%20Store!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" allowfullscreen loading="lazy"></iframe>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.3617347271816!2d95.3582574749152!3d27.48912343508353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x373f6bd954ebdaf5%3A0xf5430559e9be33cd!2sAgarwal%20Provision%20Store!5e0!3m2!1sen!2sin!4v1751347320356!5m2!1sen!2sin" 
+      allowfullscreen
+      loading="lazy"
+      style="border:0;"
+      aria-label="Agarwal Provision Store Location"
+    ></iframe>
     
     <div class="social-links-footer">
       <a href="https://instagram.com/agarwalprovisionstore.aps" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -1113,67 +1083,93 @@ header h1 {
   </div>
 
   <script>
-    // Modern loading screen with faster transition
+    // Modern loading screen with progress bar
     window.addEventListener('load', function() {
       const preloader = document.getElementById('preloader');
-      // Start fade out after minimal delay
-      setTimeout(function() {
+      const progressBar = document.getElementById('progressBar');
+      
+      // Simulate progress (for demo purposes)
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        progressBar.style.width = Math.min(progress, 100) + '%';
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            preloader.classList.add('fade-out');
+            setTimeout(() => preloader.remove(), 500);
+          }, 300);
+        }
+      }, 100);
+      
+      // Fallback in case load completes before progress
+      setTimeout(() => {
+        clearInterval(interval);
+        progressBar.style.width = '100%';
         preloader.classList.add('fade-out');
-        // Remove from DOM after animation completes
-        setTimeout(function() {
-          preloader.remove();
-        }, 500);
-      }, 800); // Reduced from original timing
+        setTimeout(() => preloader.remove(), 500);
+      }, 2500);
     });
 
     // WhatsApp function with enhanced validation
     function openWhatsApp() {
       const number = document.getElementById('userNumber').value.trim();
-      if (!number || !/^\d{10}$/.test(number)) {
-        alert('Please enter a valid 10-digit Indian phone number (without country code).');
+      const successMessage = document.getElementById('successMessage');
+      
+      // Enhanced validation for Indian mobile numbers
+      if (!number || !/^[6-9]\d{9}$/.test(number)) {
+        successMessage.querySelector('span').textContent = 'Please enter a valid 10-digit Indian mobile number';
+        successMessage.style.background = 'linear-gradient(135deg, #ff5e62 0%, #ff9966 100%)';
+        successMessage.classList.add('show');
+        
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 3000);
         return;
       }
       
-      // Show animated success message
-      const successMessage = document.getElementById('successMessage');
+      // Success state
+      successMessage.querySelector('span').textContent = 'WhatsApp chat initiated successfully!';
+      successMessage.style.background = 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)';
       successMessage.classList.add('show');
       
-      // Hide after 3 seconds
       setTimeout(() => {
         successMessage.classList.remove('show');
       }, 3000);
       
-      // Enhanced WhatsApp message with proper formatting
-      const msg = encodeURIComponent(`Hello from Agarwal Provision Store! 🛒\n\nThank you for your interest in our products. Here's how you can reach us:\n\n📞 Contact Numbers:\n- Amit Agarwal: +91 9435037571\n- Office: +91 9435925571\n\n📧 Email: aps_tsk@redifmail.com\n\n📍 Store Address:\nAgarwal Provision Store\nSiding Back Road, Tinsukia\nAssam - 786125\n\nFollow us on social media:\n📸 Instagram: @agarwalprovisionstore.aps\n👍 Facebook: facebook.com/agarwalprovisionstore\n🌐 Website: www.agarwalprovisionstore.in\n🔗 Linktree: linktr.ee/agarwalprovisionstore\n\nWe look forward to serving you!`);
-      
-      window.open(`https://wa.me/91${number}?text=${msg}`, '_blank');
+      const message = `Hello from Agarwal Provision Store! 🛒%0A%0AThank you for your interest in our products. How may we assist you today?`;
+      window.open(`https://wa.me/91${number}?text=${message}`, '_blank');
     }
 
-    // Optimized scroll animations with intersection observer
+    // Optimized Intersection Observer with staggered loading
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // For brand categories - add staggered animation
-          if (entry.target.classList.contains('brand-category')) {
-            entry.target.style.transitionDelay = `${entry.target.dataset.delay || '0'}s`;
-          }
+          requestAnimationFrame(() => {
+            entry.target.classList.add('visible');
+            if (entry.target.classList.contains('brand-category')) {
+              entry.target.style.transitionDelay = `${entry.target.dataset.delay || '0'}s`;
+            }
+          });
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Observe all sections and brand categories
+    // Observe elements with a small delay between each
     document.querySelectorAll('section, .brand-category').forEach((element, index) => {
-      if (element.classList.contains('brand-category')) {
-        element.dataset.delay = index * 0.1;
-      }
-      observer.observe(element);
+      setTimeout(() => {
+        if (element.classList.contains('brand-category')) {
+          element.dataset.delay = index * 0.05;
+        }
+        observer.observe(element);
+      }, index * 50);
     });
 
     // Smooth scrolling for anchor links
@@ -1193,10 +1189,21 @@ header h1 {
     // Back to top button with optimized performance
     const backToTopButton = document.getElementById('backToTop');
     let scrollTimeout;
+    let isScrolling = false;
     
     window.addEventListener('scroll', function() {
       clearTimeout(scrollTimeout);
+      
+      if (!isScrolling) {
+        document.body.classList.add('scrolling');
+        isScrolling = true;
+      }
+      
       scrollTimeout = setTimeout(function() {
+        document.body.classList.remove('scrolling');
+        isScrolling = false;
+        
+        // Back to top button visibility
         if (window.pageYOffset > 400) {
           backToTopButton.classList.add('visible');
         } else {
